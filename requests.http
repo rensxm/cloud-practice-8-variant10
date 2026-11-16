@@ -1,0 +1,35 @@
+@base = https://cloud-practice-8-variant10.onrender.com
+
+### Барлық файл
+GET {{base}}/api/files
+
+### Бар файл
+GET {{base}}/api/files/1
+
+### Жоқ файл: 404
+GET {{base}}/api/files/2147483647
+
+### Міндетті өріс жоқ: 400
+POST {{base}}/api/files
+Content-Type: application/json
+
+{"name":"тексеру.txt"}
+
+### Жаңа файл: әр іске қосқанда атауын өзгертіңіз
+POST {{base}}/api/files
+Content-Type: application/json
+
+{"name":"менің-жаңа-файлым.txt","content_type":"text/plain","size_bytes":128}
+
+### Қызмет күйі
+GET {{base}}/health
+
+### База күйі: дұрыс қосылымда 200, ақауда 503
+GET {{base}}/health/db
+
+### Өз POST жауабындағы ID нөмірін жазыңыз: толық жаңарту
+PUT {{base}}/api/files/ID
+Content-Type: application/json
+
+{"name":"менің-жаңа-файлым.txt","content_type":"text/plain","size_bytes":8192}
+

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="kk">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>№8 жұмыс — бұлттық файлдар жүйесі</title>
+<style>
+body{font:17px/1.5 system-ui,sans-serif;max-width:880px;margin:36px auto;padding:0 20px;color:#17202a;background:#f5f7fa}
+h1{font-size:28px;margin-bottom:8px}p{margin:8px 0 20px}section{background:white;padding:20px;margin:16px 0;border:1px solid #d7dee7;border-radius:8px}
+label{display:inline-block;margin:4px 12px 12px 0}input{display:block;padding:8px;font:inherit;max-width:240px;border:1px solid #aeb9c5;border-radius:4px}
+button{font:inherit;padding:9px 14px;background:#154e8a;color:white;border:0;border-radius:4px;cursor:pointer;margin-right:10px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font:15px/1.5 Consolas,monospace;background:#101b2a;color:#e8f0fa;padding:18px;border-radius:6px}
+#status{font-weight:700}a{color:#154e8a}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:8px;border-bottom:1px solid #d7dee7;overflow-wrap:anywhere}td button{font-size:14px;padding:5px 9px}button:disabled{opacity:.6}h2{font-size:22px}
+</style>
+<h1>Бұлттық файлдар жүйесі</h1>
+<p>№8 практикалық жұмыс · 10-нұсқа. Файлдың атауы, түрі және көлемі сақталады.</p>
+<section>
+<button id="health">Қызмет күйі</button>
+<button id="database">База күйі</button>
+<button id="bad">400 тексеру</button>
+<button id="missing">404 тексеру</button>
+</section>
+<section>
+<button id="all">Барлық файлды оқу</button>
+<label>Файл нөмірі<input id="file-id" type="number" value="1" min="1"></label>
+<button id="one">Бір файлды оқу</button>
+<p id="count">Тізімді ашу үшін «Барлық файлды оқу» батырмасын басыңыз.</p>
+<table id="file-table" hidden><thead><tr><th>ID</th><th>Атауы</th><th>MIME түрі</th><th>Байт</th><th>Әрекет</th></tr></thead><tbody id="rows"></tbody></table>
+</section>
+<section>
+<h2>Файл қосу немесе өзгерту</h2>
+<p>Өзгерту үшін тізімнен файлды таңдаңыз немесе оның ID нөмірін енгізіңіз. PUT барлық үш өрісті ауыстырады.</p>
+<label>Атауы<input id="name" value="зертхана.txt"></label>
+<label>MIME түрі<input id="type" value="text/plain"></label>
+<label>Көлемі, байт<input id="size" type="number" value="2048" min="0"></label>
+<button id="add">POST арқылы қосу</button>
+<button id="update">Таңдалған ID-ді өзгерту (PUT)</button>
+</section>
+<section aria-live="polite">
+<p id="request">Сұраныс әлі жіберілген жоқ.</p>
+<p id="status">Нәтижені көру үшін батырманы басыңыз.</p>
+<pre id="result">{}</pre>
+</section>
+<p><a href="/api/files">JSON тізімін ашу</a> · <a href="/info">Құпиясыз баптау белгісі</a></p>
+<script>
+async function send(method,path,data){
+  document.getElementById('request').textContent=method+' '+path;
+  document.getElementById('status').textContent='Сұраныс орындалып жатыр…';
+  try{
+    const options={method};
+    if(data){options.headers={'Content-Type':'application/json'};options.body=JSON.stringify(data);}
+    const response=await fetch(path,options);
+    const body=await response.json();
+    document.getElementById('status').textContent='HTTP '+response.status+' '+(response.ok?'— сәтті орындалды':'— сұраныс орындалмады');
+    document.getElementById('result').textContent=JSON.stringify(body,null,2);
+    if(response.ok && Array.isArray(body)) renderRows(body);
+    if(response.ok && method==='POST') document.getElementById('file-id').value=body.id;
+    return {status:response.status,body};
+  }catch(error){document.getElementById('status').textContent='Серверге қосылу мүмкін болмады';}
+}
+function renderRows(files){
+  const rows=document.getElementById('rows'); rows.replaceChildren();
+  document.getElementById('file-table').hidden=false;
+  document.getElementById('count').textContent='Барлығы: '+files.length+' жазба. Өзгерту үшін «Таңдау» батырмасын басыңыз.';
+  for(const f of files){
+    const tr=document.createElement('tr');
+    for(const value of [f.id,f.name,f.content_type,f.size_bytes]){
+      const td=document.createElement('td');td.textContent=String(value);tr.append(td);
+    }
+    const td=document.createElement('td'),b=document.createElement('button');b.textContent='Таңдау';
+    b.onclick=()=>{document.getElementById('file-id').value=f.id;document.getElementById('name').value=f.name;document.getElementById('type').value=f.content_type;document.getElementById('size').value=f.size_bytes;};
+    td.append(b);tr.append(td);rows.append(tr);
+  }
+}
+document.getElementById('all').onclick=()=>send('GET','/api/files');
+document.getElementById('one').onclick=()=>send('GET','/api/files/'+encodeURIComponent(document.getElementById('file-id').value));
+document.getElementById('health').onclick=()=>send('GET','/health');
+document.getElementById('database').onclick=()=>send('GET','/health/db');
+document.getElementById('bad').onclick=()=>send('POST','/api/files',{name:'тексеру.txt'});
+document.getElementById('missing').onclick=()=>send('GET','/api/files/2147483647');
+document.getElementById('name').value='файл-'+Date.now()+'.txt';
+document.getElementById('add').onclick=()=>send('POST','/api/files',{
+  name:document.getElementById('name').value,
+  content_type:document.getElementById('type').value,
+  size_bytes:Number(document.getElementById('size').value)
+});
+document.getElementById('update').onclick=()=>send('PUT','/api/files/'+encodeURIComponent(document.getElementById('file-id').value),{
+  name:document.getElementById('name').value,
+  content_type:document.getElementById('type').value,
+  size_bytes:Number(document.getElementById('size').value)
+});
+</script>
+</html>

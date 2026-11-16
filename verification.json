@@ -1,0 +1,1136 @@
+{
+    "practice":  8,
+    "variant":  10,
+    "repository":  "https://github.com/rensxm/cloud-practice-8-variant10",
+    "serviceUrl":  "https://cloud-practice-8-variant10.onrender.com",
+    "local":  {
+                  "base":  "http://127.0.0.1:3004",
+                  "phase":  "good",
+                  "checkedAt":  "2026-11-16T02:36:34.139251+00:00",
+                  "checks":  [
+                                 {
+                                     "method":  "GET",
+                                     "path":  "/",
+                                     "expected":  200,
+                                     "status":  200,
+                                     "body":  "Қазақша демо бет ашылды"
+                                 },
+                                 {
+                                     "method":  "GET",
+                                     "path":  "/api/files",
+                                     "expected":  200,
+                                     "status":  200,
+                                     "body":  [
+                                                  {
+                                                      "id":  1,
+                                                      "name":  "дәріс.pdf",
+                                                      "content_type":  "application/pdf",
+                                                      "size_bytes":  245760
+                                                  },
+                                                  {
+                                                      "id":  2,
+                                                      "name":  "таныстырылым.pptx",
+                                                      "content_type":  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                                      "size_bytes":  1048576
+                                                  },
+                                                  {
+                                                      "id":  3,
+                                                      "name":  "конспект.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  4096
+                                                  },
+                                                  {
+                                                      "id":  10,
+                                                      "name":  "зертхана.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  2048
+                                                  },
+                                                  {
+                                                      "id":  14,
+                                                      "name":  "жергілікті-7.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  1024
+                                                  },
+                                                  {
+                                                      "id":  15,
+                                                      "name":  "қауіпсіздік-7.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  1024
+                                                  },
+                                                  {
+                                                      "id":  16,
+                                                      "name":  "қорғау-7.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  2048
+                                                  }
+                                              ]
+                                 },
+                                 {
+                                     "method":  "GET",
+                                     "path":  "/api/files/1",
+                                     "expected":  200,
+                                     "status":  200,
+                                     "body":  {
+                                                  "id":  1,
+                                                  "name":  "дәріс.pdf",
+                                                  "content_type":  "application/pdf",
+                                                  "size_bytes":  245760
+                                              }
+                                 },
+                                 {
+                                     "method":  "GET",
+                                     "path":  "/api/files/2147483647",
+                                     "expected":  404,
+                                     "status":  404,
+                                     "body":  {
+                                                  "error":  "Файл табылмады"
+                                              }
+                                 },
+                                 {
+                                     "method":  "POST",
+                                     "path":  "/api/files",
+                                     "expected":  400,
+                                     "status":  400,
+                                     "body":  {
+                                                  "error":  "name, content_type және теріс емес бүтін size_bytes қажет"
+                                              }
+                                 },
+                                 {
+                                     "method":  "POST",
+                                     "path":  "/api/files",
+                                     "expected":  400,
+                                     "status":  400,
+                                     "body":  {
+                                                  "error":  "name, content_type және теріс емес бүтін size_bytes қажет"
+                                              }
+                                 },
+                                 {
+                                     "method":  "POST",
+                                     "path":  "/api/files",
+                                     "expected":  400,
+                                     "status":  400,
+                                     "body":  {
+                                                  "error":  "JSON пішімі қате"
+                                              }
+                                 },
+                                 {
+                                     "method":  "POST",
+                                     "path":  "/api/files",
+                                     "expected":  201,
+                                     "status":  201,
+                                     "body":  {
+                                                  "id":  17,
+                                                  "name":  "жергілікті-8.txt",
+                                                  "content_type":  "text/plain",
+                                                  "size_bytes":  1024
+                                              }
+                                 },
+                                 {
+                                     "method":  "PUT",
+                                     "path":  "/api/files/17",
+                                     "expected":  400,
+                                     "status":  400,
+                                     "body":  {
+                                                  "error":  "name, content_type және теріс емес бүтін size_bytes қажет"
+                                              }
+                                 },
+                                 {
+                                     "method":  "PUT",
+                                     "path":  "/api/files/17",
+                                     "expected":  400,
+                                     "status":  400,
+                                     "body":  {
+                                                  "error":  "name, content_type және теріс емес бүтін size_bytes қажет"
+                                              }
+                                 },
+                                 {
+                                     "method":  "PUT",
+                                     "path":  "/api/files/17",
+                                     "expected":  400,
+                                     "status":  400,
+                                     "body":  {
+                                                  "error":  "name, content_type және теріс емес бүтін size_bytes қажет"
+                                              }
+                                 },
+                                 {
+                                     "method":  "GET",
+                                     "path":  "/api/files/17",
+                                     "expected":  200,
+                                     "status":  200,
+                                     "body":  {
+                                                  "id":  17,
+                                                  "name":  "жергілікті-8.txt",
+                                                  "content_type":  "text/plain",
+                                                  "size_bytes":  1024
+                                              }
+                                 },
+                                 {
+                                     "method":  "PUT",
+                                     "path":  "/api/files/2147483647",
+                                     "expected":  404,
+                                     "status":  404,
+                                     "body":  {
+                                                  "error":  "Файл табылмады"
+                                              }
+                                 },
+                                 {
+                                     "method":  "PUT",
+                                     "path":  "/api/files/abc",
+                                     "expected":  400,
+                                     "status":  400,
+                                     "body":  {
+                                                  "error":  "id оң бүтін сан болуы керек"
+                                              }
+                                 },
+                                 {
+                                     "method":  "PUT",
+                                     "path":  "/api/files/17",
+                                     "expected":  200,
+                                     "status":  200,
+                                     "body":  {
+                                                  "id":  17,
+                                                  "name":  "жергілікті-8.txt",
+                                                  "content_type":  "text/plain",
+                                                  "size_bytes":  8192
+                                              }
+                                 },
+                                 {
+                                     "method":  "GET",
+                                     "path":  "/api/files/17",
+                                     "expected":  200,
+                                     "status":  200,
+                                     "body":  {
+                                                  "id":  17,
+                                                  "name":  "жергілікті-8.txt",
+                                                  "content_type":  "text/plain",
+                                                  "size_bytes":  8192
+                                              }
+                                 },
+                                 {
+                                     "method":  "GET",
+                                     "path":  "/health",
+                                     "expected":  200,
+                                     "status":  200,
+                                     "body":  {
+                                                  "status":  "ok",
+                                                  "time":  "2026-11-16T02:36:38.033Z"
+                                              }
+                                 },
+                                 {
+                                     "method":  "GET",
+                                     "path":  "/health/db",
+                                     "expected":  200,
+                                     "status":  200,
+                                     "body":  {
+                                                  "status":  "ok",
+                                                  "database":  "connected"
+                                              }
+                                 },
+                                 {
+                                     "method":  "GET",
+                                     "path":  "/api/files",
+                                     "expected":  200,
+                                     "status":  200,
+                                     "body":  [
+                                                  {
+                                                      "id":  1,
+                                                      "name":  "дәріс.pdf",
+                                                      "content_type":  "application/pdf",
+                                                      "size_bytes":  245760
+                                                  },
+                                                  {
+                                                      "id":  2,
+                                                      "name":  "таныстырылым.pptx",
+                                                      "content_type":  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                                      "size_bytes":  1048576
+                                                  },
+                                                  {
+                                                      "id":  3,
+                                                      "name":  "конспект.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  4096
+                                                  },
+                                                  {
+                                                      "id":  10,
+                                                      "name":  "зертхана.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  2048
+                                                  },
+                                                  {
+                                                      "id":  14,
+                                                      "name":  "жергілікті-7.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  1024
+                                                  },
+                                                  {
+                                                      "id":  15,
+                                                      "name":  "қауіпсіздік-7.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  1024
+                                                  },
+                                                  {
+                                                      "id":  16,
+                                                      "name":  "қорғау-7.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  2048
+                                                  },
+                                                  {
+                                                      "id":  17,
+                                                      "name":  "жергілікті-8.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  8192
+                                                  }
+                                              ]
+                                 }
+                             ],
+                  "initialCount":  7,
+                  "beforeSnapshot":  [
+                                         {
+                                             "id":  1,
+                                             "name":  "дәріс.pdf",
+                                             "content_type":  "application/pdf",
+                                             "size_bytes":  245760
+                                         },
+                                         {
+                                             "id":  2,
+                                             "name":  "таныстырылым.pptx",
+                                             "content_type":  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                             "size_bytes":  1048576
+                                         },
+                                         {
+                                             "id":  3,
+                                             "name":  "конспект.txt",
+                                             "content_type":  "text/plain",
+                                             "size_bytes":  4096
+                                         },
+                                         {
+                                             "id":  10,
+                                             "name":  "зертхана.txt",
+                                             "content_type":  "text/plain",
+                                             "size_bytes":  2048
+                                         },
+                                         {
+                                             "id":  14,
+                                             "name":  "жергілікті-7.txt",
+                                             "content_type":  "text/plain",
+                                             "size_bytes":  1024
+                                         },
+                                         {
+                                             "id":  15,
+                                             "name":  "қауіпсіздік-7.txt",
+                                             "content_type":  "text/plain",
+                                             "size_bytes":  1024
+                                         },
+                                         {
+                                             "id":  16,
+                                             "name":  "қорғау-7.txt",
+                                             "content_type":  "text/plain",
+                                             "size_bytes":  2048
+                                         }
+                                     ],
+                  "created":  {
+                                  "id":  17,
+                                  "name":  "жергілікті-8.txt",
+                                  "content_type":  "text/plain",
+                                  "size_bytes":  1024
+                              },
+                  "updated":  {
+                                  "id":  17,
+                                  "name":  "жергілікті-8.txt",
+                                  "content_type":  "text/plain",
+                                  "size_bytes":  8192
+                              },
+                  "finalSnapshot":  [
+                                        {
+                                            "id":  1,
+                                            "name":  "дәріс.pdf",
+                                            "content_type":  "application/pdf",
+                                            "size_bytes":  245760
+                                        },
+                                        {
+                                            "id":  2,
+                                            "name":  "таныстырылым.pptx",
+                                            "content_type":  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                            "size_bytes":  1048576
+                                        },
+                                        {
+                                            "id":  3,
+                                            "name":  "конспект.txt",
+                                            "content_type":  "text/plain",
+                                            "size_bytes":  4096
+                                        },
+                                        {
+                                            "id":  10,
+                                            "name":  "зертхана.txt",
+                                            "content_type":  "text/plain",
+                                            "size_bytes":  2048
+                                        },
+                                        {
+                                            "id":  14,
+                                            "name":  "жергілікті-7.txt",
+                                            "content_type":  "text/plain",
+                                            "size_bytes":  1024
+                                        },
+                                        {
+                                            "id":  15,
+                                            "name":  "қауіпсіздік-7.txt",
+                                            "content_type":  "text/plain",
+                                            "size_bytes":  1024
+                                        },
+                                        {
+                                            "id":  16,
+                                            "name":  "қорғау-7.txt",
+                                            "content_type":  "text/plain",
+                                            "size_bytes":  2048
+                                        },
+                                        {
+                                            "id":  17,
+                                            "name":  "жергілікті-8.txt",
+                                            "content_type":  "text/plain",
+                                            "size_bytes":  8192
+                                        }
+                                    ]
+              },
+    "cloudGood":  {
+                      "base":  "https://cloud-practice-8-variant10.onrender.com",
+                      "phase":  "good",
+                      "checkedAt":  "2026-11-16T02:39:35.415391+00:00",
+                      "checks":  [
+                                     {
+                                         "method":  "GET",
+                                         "path":  "/",
+                                         "expected":  200,
+                                         "status":  200,
+                                         "body":  "Қазақша демо бет ашылды"
+                                     },
+                                     {
+                                         "method":  "GET",
+                                         "path":  "/api/files",
+                                         "expected":  200,
+                                         "status":  200,
+                                         "body":  [
+                                                      {
+                                                          "id":  1,
+                                                          "name":  "дәріс.pdf",
+                                                          "content_type":  "application/pdf",
+                                                          "size_bytes":  245760
+                                                      },
+                                                      {
+                                                          "id":  2,
+                                                          "name":  "таныстырылым.pptx",
+                                                          "content_type":  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                                          "size_bytes":  1048576
+                                                      },
+                                                      {
+                                                          "id":  3,
+                                                          "name":  "конспект.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  4096
+                                                      },
+                                                      {
+                                                          "id":  10,
+                                                          "name":  "зертхана.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  2048
+                                                      },
+                                                      {
+                                                          "id":  14,
+                                                          "name":  "жергілікті-7.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  1024
+                                                      },
+                                                      {
+                                                          "id":  15,
+                                                          "name":  "қауіпсіздік-7.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  1024
+                                                      },
+                                                      {
+                                                          "id":  16,
+                                                          "name":  "қорғау-7.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  2048
+                                                      },
+                                                      {
+                                                          "id":  17,
+                                                          "name":  "жергілікті-8.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  8192
+                                                      },
+                                                      {
+                                                          "id":  21,
+                                                          "name":  "сурет.png",
+                                                          "content_type":  "image/png",
+                                                          "size_bytes":  512000
+                                                      },
+                                                      {
+                                                          "id":  22,
+                                                          "name":  "жоба.zip",
+                                                          "content_type":  "application/zip",
+                                                          "size_bytes":  2097152
+                                                      }
+                                                  ]
+                                     },
+                                     {
+                                         "method":  "GET",
+                                         "path":  "/api/files/1",
+                                         "expected":  200,
+                                         "status":  200,
+                                         "body":  {
+                                                      "id":  1,
+                                                      "name":  "дәріс.pdf",
+                                                      "content_type":  "application/pdf",
+                                                      "size_bytes":  245760
+                                                  }
+                                     },
+                                     {
+                                         "method":  "GET",
+                                         "path":  "/api/files/2147483647",
+                                         "expected":  404,
+                                         "status":  404,
+                                         "body":  {
+                                                      "error":  "Файл табылмады"
+                                                  }
+                                     },
+                                     {
+                                         "method":  "POST",
+                                         "path":  "/api/files",
+                                         "expected":  400,
+                                         "status":  400,
+                                         "body":  {
+                                                      "error":  "name, content_type және теріс емес бүтін size_bytes қажет"
+                                                  }
+                                     },
+                                     {
+                                         "method":  "POST",
+                                         "path":  "/api/files",
+                                         "expected":  400,
+                                         "status":  400,
+                                         "body":  {
+                                                      "error":  "name, content_type және теріс емес бүтін size_bytes қажет"
+                                                  }
+                                     },
+                                     {
+                                         "method":  "POST",
+                                         "path":  "/api/files",
+                                         "expected":  400,
+                                         "status":  400,
+                                         "body":  {
+                                                      "error":  "JSON пішімі қате"
+                                                  }
+                                     },
+                                     {
+                                         "method":  "POST",
+                                         "path":  "/api/files",
+                                         "expected":  201,
+                                         "status":  201,
+                                         "body":  {
+                                                      "id":  23,
+                                                      "name":  "қорытынды-8.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  1024
+                                                  }
+                                     },
+                                     {
+                                         "method":  "PUT",
+                                         "path":  "/api/files/23",
+                                         "expected":  400,
+                                         "status":  400,
+                                         "body":  {
+                                                      "error":  "name, content_type және теріс емес бүтін size_bytes қажет"
+                                                  }
+                                     },
+                                     {
+                                         "method":  "PUT",
+                                         "path":  "/api/files/23",
+                                         "expected":  400,
+                                         "status":  400,
+                                         "body":  {
+                                                      "error":  "name, content_type және теріс емес бүтін size_bytes қажет"
+                                                  }
+                                     },
+                                     {
+                                         "method":  "PUT",
+                                         "path":  "/api/files/23",
+                                         "expected":  400,
+                                         "status":  400,
+                                         "body":  {
+                                                      "error":  "name, content_type және теріс емес бүтін size_bytes қажет"
+                                                  }
+                                     },
+                                     {
+                                         "method":  "GET",
+                                         "path":  "/api/files/23",
+                                         "expected":  200,
+                                         "status":  200,
+                                         "body":  {
+                                                      "id":  23,
+                                                      "name":  "қорытынды-8.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  1024
+                                                  }
+                                     },
+                                     {
+                                         "method":  "PUT",
+                                         "path":  "/api/files/2147483647",
+                                         "expected":  404,
+                                         "status":  404,
+                                         "body":  {
+                                                      "error":  "Файл табылмады"
+                                                  }
+                                     },
+                                     {
+                                         "method":  "PUT",
+                                         "path":  "/api/files/abc",
+                                         "expected":  400,
+                                         "status":  400,
+                                         "body":  {
+                                                      "error":  "id оң бүтін сан болуы керек"
+                                                  }
+                                     },
+                                     {
+                                         "method":  "PUT",
+                                         "path":  "/api/files/23",
+                                         "expected":  200,
+                                         "status":  200,
+                                         "body":  {
+                                                      "id":  23,
+                                                      "name":  "қорытынды-8.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  8192
+                                                  }
+                                     },
+                                     {
+                                         "method":  "GET",
+                                         "path":  "/api/files/23",
+                                         "expected":  200,
+                                         "status":  200,
+                                         "body":  {
+                                                      "id":  23,
+                                                      "name":  "қорытынды-8.txt",
+                                                      "content_type":  "text/plain",
+                                                      "size_bytes":  8192
+                                                  }
+                                     },
+                                     {
+                                         "method":  "GET",
+                                         "path":  "/health",
+                                         "expected":  200,
+                                         "status":  200,
+                                         "body":  {
+                                                      "status":  "ok",
+                                                      "time":  "2026-11-16T02:39:46.905Z"
+                                                  }
+                                     },
+                                     {
+                                         "method":  "GET",
+                                         "path":  "/health/db",
+                                         "expected":  200,
+                                         "status":  200,
+                                         "body":  {
+                                                      "status":  "ok",
+                                                      "database":  "connected"
+                                                  }
+                                     },
+                                     {
+                                         "method":  "GET",
+                                         "path":  "/api/files",
+                                         "expected":  200,
+                                         "status":  200,
+                                         "body":  [
+                                                      {
+                                                          "id":  1,
+                                                          "name":  "дәріс.pdf",
+                                                          "content_type":  "application/pdf",
+                                                          "size_bytes":  245760
+                                                      },
+                                                      {
+                                                          "id":  2,
+                                                          "name":  "таныстырылым.pptx",
+                                                          "content_type":  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                                          "size_bytes":  1048576
+                                                      },
+                                                      {
+                                                          "id":  3,
+                                                          "name":  "конспект.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  4096
+                                                      },
+                                                      {
+                                                          "id":  10,
+                                                          "name":  "зертхана.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  2048
+                                                      },
+                                                      {
+                                                          "id":  14,
+                                                          "name":  "жергілікті-7.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  1024
+                                                      },
+                                                      {
+                                                          "id":  15,
+                                                          "name":  "қауіпсіздік-7.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  1024
+                                                      },
+                                                      {
+                                                          "id":  16,
+                                                          "name":  "қорғау-7.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  2048
+                                                      },
+                                                      {
+                                                          "id":  17,
+                                                          "name":  "жергілікті-8.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  8192
+                                                      },
+                                                      {
+                                                          "id":  21,
+                                                          "name":  "сурет.png",
+                                                          "content_type":  "image/png",
+                                                          "size_bytes":  512000
+                                                      },
+                                                      {
+                                                          "id":  22,
+                                                          "name":  "жоба.zip",
+                                                          "content_type":  "application/zip",
+                                                          "size_bytes":  2097152
+                                                      },
+                                                      {
+                                                          "id":  23,
+                                                          "name":  "қорытынды-8.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  8192
+                                                      }
+                                                  ]
+                                     }
+                                 ],
+                      "initialCount":  10,
+                      "beforeSnapshot":  [
+                                             {
+                                                 "id":  1,
+                                                 "name":  "дәріс.pdf",
+                                                 "content_type":  "application/pdf",
+                                                 "size_bytes":  245760
+                                             },
+                                             {
+                                                 "id":  2,
+                                                 "name":  "таныстырылым.pptx",
+                                                 "content_type":  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                                 "size_bytes":  1048576
+                                             },
+                                             {
+                                                 "id":  3,
+                                                 "name":  "конспект.txt",
+                                                 "content_type":  "text/plain",
+                                                 "size_bytes":  4096
+                                             },
+                                             {
+                                                 "id":  10,
+                                                 "name":  "зертхана.txt",
+                                                 "content_type":  "text/plain",
+                                                 "size_bytes":  2048
+                                             },
+                                             {
+                                                 "id":  14,
+                                                 "name":  "жергілікті-7.txt",
+                                                 "content_type":  "text/plain",
+                                                 "size_bytes":  1024
+                                             },
+                                             {
+                                                 "id":  15,
+                                                 "name":  "қауіпсіздік-7.txt",
+                                                 "content_type":  "text/plain",
+                                                 "size_bytes":  1024
+                                             },
+                                             {
+                                                 "id":  16,
+                                                 "name":  "қорғау-7.txt",
+                                                 "content_type":  "text/plain",
+                                                 "size_bytes":  2048
+                                             },
+                                             {
+                                                 "id":  17,
+                                                 "name":  "жергілікті-8.txt",
+                                                 "content_type":  "text/plain",
+                                                 "size_bytes":  8192
+                                             },
+                                             {
+                                                 "id":  21,
+                                                 "name":  "сурет.png",
+                                                 "content_type":  "image/png",
+                                                 "size_bytes":  512000
+                                             },
+                                             {
+                                                 "id":  22,
+                                                 "name":  "жоба.zip",
+                                                 "content_type":  "application/zip",
+                                                 "size_bytes":  2097152
+                                             }
+                                         ],
+                      "created":  {
+                                      "id":  23,
+                                      "name":  "қорытынды-8.txt",
+                                      "content_type":  "text/plain",
+                                      "size_bytes":  1024
+                                  },
+                      "updated":  {
+                                      "id":  23,
+                                      "name":  "қорытынды-8.txt",
+                                      "content_type":  "text/plain",
+                                      "size_bytes":  8192
+                                  },
+                      "finalSnapshot":  [
+                                            {
+                                                "id":  1,
+                                                "name":  "дәріс.pdf",
+                                                "content_type":  "application/pdf",
+                                                "size_bytes":  245760
+                                            },
+                                            {
+                                                "id":  2,
+                                                "name":  "таныстырылым.pptx",
+                                                "content_type":  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                                "size_bytes":  1048576
+                                            },
+                                            {
+                                                "id":  3,
+                                                "name":  "конспект.txt",
+                                                "content_type":  "text/plain",
+                                                "size_bytes":  4096
+                                            },
+                                            {
+                                                "id":  10,
+                                                "name":  "зертхана.txt",
+                                                "content_type":  "text/plain",
+                                                "size_bytes":  2048
+                                            },
+                                            {
+                                                "id":  14,
+                                                "name":  "жергілікті-7.txt",
+                                                "content_type":  "text/plain",
+                                                "size_bytes":  1024
+                                            },
+                                            {
+                                                "id":  15,
+                                                "name":  "қауіпсіздік-7.txt",
+                                                "content_type":  "text/plain",
+                                                "size_bytes":  1024
+                                            },
+                                            {
+                                                "id":  16,
+                                                "name":  "қорғау-7.txt",
+                                                "content_type":  "text/plain",
+                                                "size_bytes":  2048
+                                            },
+                                            {
+                                                "id":  17,
+                                                "name":  "жергілікті-8.txt",
+                                                "content_type":  "text/plain",
+                                                "size_bytes":  8192
+                                            },
+                                            {
+                                                "id":  21,
+                                                "name":  "сурет.png",
+                                                "content_type":  "image/png",
+                                                "size_bytes":  512000
+                                            },
+                                            {
+                                                "id":  22,
+                                                "name":  "жоба.zip",
+                                                "content_type":  "application/zip",
+                                                "size_bytes":  2097152
+                                            },
+                                            {
+                                                "id":  23,
+                                                "name":  "қорытынды-8.txt",
+                                                "content_type":  "text/plain",
+                                                "size_bytes":  8192
+                                            }
+                                        ]
+                  },
+    "cloudFault":  {
+                       "base":  "https://cloud-practice-8-variant10.onrender.com",
+                       "phase":  "bad",
+                       "checkedAt":  "2026-11-16T02:44:21.404874+00:00",
+                       "checks":  [
+                                      {
+                                          "method":  "GET",
+                                          "path":  "/health",
+                                          "expected":  200,
+                                          "status":  200,
+                                          "body":  {
+                                                       "status":  "ok",
+                                                       "time":  "2026-11-16T02:44:26.352Z"
+                                                   }
+                                      },
+                                      {
+                                          "method":  "GET",
+                                          "path":  "/health/db",
+                                          "expected":  503,
+                                          "status":  503,
+                                          "body":  {
+                                                       "status":  "degraded",
+                                                       "database":  "unavailable"
+                                                   }
+                                      },
+                                      {
+                                          "method":  "GET",
+                                          "path":  "/api/files",
+                                          "expected":  500,
+                                          "status":  500,
+                                          "body":  {
+                                                       "error":  "Серверде қате пайда болды"
+                                                   }
+                                      }
+                                  ]
+                   },
+    "cloudRestored":  {
+                          "base":  "https://cloud-practice-8-variant10.onrender.com",
+                          "phase":  "restored",
+                          "checkedAt":  "2026-11-16T02:50:04.398291+00:00",
+                          "checks":  [
+                                         {
+                                             "method":  "GET",
+                                             "path":  "/health",
+                                             "expected":  200,
+                                             "status":  200,
+                                             "body":  {
+                                                          "status":  "ok",
+                                                          "time":  "2026-11-16T02:50:09.299Z"
+                                                      }
+                                         },
+                                         {
+                                             "method":  "GET",
+                                             "path":  "/health/db",
+                                             "expected":  200,
+                                             "status":  200,
+                                             "body":  {
+                                                          "status":  "ok",
+                                                          "database":  "connected"
+                                                      }
+                                         },
+                                         {
+                                             "method":  "GET",
+                                             "path":  "/api/files",
+                                             "expected":  200,
+                                             "status":  200,
+                                             "body":  [
+                                                          {
+                                                              "id":  1,
+                                                              "name":  "дәріс.pdf",
+                                                              "content_type":  "application/pdf",
+                                                              "size_bytes":  245760
+                                                          },
+                                                          {
+                                                              "id":  2,
+                                                              "name":  "таныстырылым.pptx",
+                                                              "content_type":  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                                              "size_bytes":  1048576
+                                                          },
+                                                          {
+                                                              "id":  3,
+                                                              "name":  "конспект.txt",
+                                                              "content_type":  "text/plain",
+                                                              "size_bytes":  4096
+                                                          },
+                                                          {
+                                                              "id":  10,
+                                                              "name":  "зертхана.txt",
+                                                              "content_type":  "text/plain",
+                                                              "size_bytes":  2048
+                                                          },
+                                                          {
+                                                              "id":  14,
+                                                              "name":  "жергілікті-7.txt",
+                                                              "content_type":  "text/plain",
+                                                              "size_bytes":  1024
+                                                          },
+                                                          {
+                                                              "id":  15,
+                                                              "name":  "қауіпсіздік-7.txt",
+                                                              "content_type":  "text/plain",
+                                                              "size_bytes":  1024
+                                                          },
+                                                          {
+                                                              "id":  16,
+                                                              "name":  "қорғау-7.txt",
+                                                              "content_type":  "text/plain",
+                                                              "size_bytes":  2048
+                                                          },
+                                                          {
+                                                              "id":  17,
+                                                              "name":  "жергілікті-8.txt",
+                                                              "content_type":  "text/plain",
+                                                              "size_bytes":  8192
+                                                          },
+                                                          {
+                                                              "id":  21,
+                                                              "name":  "сурет.png",
+                                                              "content_type":  "image/png",
+                                                              "size_bytes":  512000
+                                                          },
+                                                          {
+                                                              "id":  22,
+                                                              "name":  "жоба.zip",
+                                                              "content_type":  "application/zip",
+                                                              "size_bytes":  2097152
+                                                          },
+                                                          {
+                                                              "id":  23,
+                                                              "name":  "қорытынды-8.txt",
+                                                              "content_type":  "text/plain",
+                                                              "size_bytes":  8192
+                                                          },
+                                                          {
+                                                              "id":  24,
+                                                              "name":  "қорғау-8.txt",
+                                                              "content_type":  "text/plain",
+                                                              "size_bytes":  8192
+                                                          }
+                                                      ]
+                                         },
+                                         {
+                                             "method":  "GET",
+                                             "path":  "/api/files/23",
+                                             "expected":  200,
+                                             "status":  200,
+                                             "body":  {
+                                                          "id":  23,
+                                                          "name":  "қорытынды-8.txt",
+                                                          "content_type":  "text/plain",
+                                                          "size_bytes":  8192
+                                                      }
+                                         }
+                                     ],
+                          "persisted":  true,
+                          "finalCount":  12,
+                          "snapshot":  [
+                                           {
+                                               "id":  1,
+                                               "name":  "дәріс.pdf",
+                                               "content_type":  "application/pdf",
+                                               "size_bytes":  245760
+                                           },
+                                           {
+                                               "id":  2,
+                                               "name":  "таныстырылым.pptx",
+                                               "content_type":  "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                               "size_bytes":  1048576
+                                           },
+                                           {
+                                               "id":  3,
+                                               "name":  "конспект.txt",
+                                               "content_type":  "text/plain",
+                                               "size_bytes":  4096
+                                           },
+                                           {
+                                               "id":  10,
+                                               "name":  "зертхана.txt",
+                                               "content_type":  "text/plain",
+                                               "size_bytes":  2048
+                                           },
+                                           {
+                                               "id":  14,
+                                               "name":  "жергілікті-7.txt",
+                                               "content_type":  "text/plain",
+                                               "size_bytes":  1024
+                                           },
+                                           {
+                                               "id":  15,
+                                               "name":  "қауіпсіздік-7.txt",
+                                               "content_type":  "text/plain",
+                                               "size_bytes":  1024
+                                           },
+                                           {
+                                               "id":  16,
+                                               "name":  "қорғау-7.txt",
+                                               "content_type":  "text/plain",
+                                               "size_bytes":  2048
+                                           },
+                                           {
+                                               "id":  17,
+                                               "name":  "жергілікті-8.txt",
+                                               "content_type":  "text/plain",
+                                               "size_bytes":  8192
+                                           },
+                                           {
+                                               "id":  21,
+                                               "name":  "сурет.png",
+                                               "content_type":  "image/png",
+                                               "size_bytes":  512000
+                                           },
+                                           {
+                                               "id":  22,
+                                               "name":  "жоба.zip",
+                                               "content_type":  "application/zip",
+                                               "size_bytes":  2097152
+                                           },
+                                           {
+                                               "id":  23,
+                                               "name":  "қорытынды-8.txt",
+                                               "content_type":  "text/plain",
+                                               "size_bytes":  8192
+                                           },
+                                           {
+                                               "id":  24,
+                                               "name":  "қорғау-8.txt",
+                                               "content_type":  "text/plain",
+                                               "size_bytes":  8192
+                                           }
+                                       ]
+                      },
+    "securityAudit":  {
+                          "checkedAt":  "2026-11-16T02:41:54.488Z",
+                          "commit":  "05e5c97b7d384e1c55b80d29adbbf641c4b64364",
+                          "trackedFiles":  [
+                                               ".env.example",
+                                               ".gitignore",
+                                               "README.md",
+                                               "db.js",
+                                               "demo.html",
+                                               "init-db.js",
+                                               "package-lock.json",
+                                               "package.json",
+                                               "requests.http",
+                                               "schema.sql",
+                                               "server.js",
+                                               "verification.json"
+                                           ],
+                          "envTracked":  false,
+                          "credentialFindings":  [
+
+                                                 ],
+                          "localEnvExists":  true,
+                          "gitignore":  "node_modules/\n.env\n.env.*\n!.env.example\n*.log\n",
+                          "scope":  "Current public repository files; credential URL and private-key pattern scan."
+                      },
+    "uiPost":  {
+                   "size_bytes":  1024,
+                   "status":  201,
+                   "content_type":  "text/plain",
+                   "name":  "қорғау-8.txt",
+                   "id":  24
+               },
+    "uiPut":  {
+                  "size_bytes":  8192,
+                  "status":  200,
+                  "content_type":  "text/plain",
+                  "name":  "қорғау-8.txt",
+                  "id":  24
+              },
+    "uiRestored":  {
+                       "size_bytes":  8192,
+                       "status":  200,
+                       "content_type":  "text/plain",
+                       "name":  "қорғау-8.txt",
+                       "id":  24
+                   },
+    "deployments":  {
+                        "fault":  "dep-dbt6rjt6e07s73bjkvh0",
+                        "restored":  "dep-dbt6u4l6e07s73bjqtf0",
+                        "good":  "dep-dbt6p2uk1f9s73b0lsa0"
+                    }
+}
