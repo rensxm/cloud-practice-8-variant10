@@ -2,7 +2,7 @@
 <html lang="kk">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>№8 жұмыс — бұлттық файлдар жүйесі</title>
+<title>Файлдар</title>
 <style>
 body{font:17px/1.5 system-ui,sans-serif;max-width:880px;margin:36px auto;padding:0 20px;color:#17202a;background:#f5f7fa}
 h1{font-size:28px;margin-bottom:8px}p{margin:8px 0 20px}section{background:white;padding:20px;margin:16px 0;border:1px solid #d7dee7;border-radius:8px}
@@ -12,36 +12,32 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;font:15px/1.5 Consolas,monospace
 #status{font-weight:700}a{color:#154e8a}
 table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:8px;border-bottom:1px solid #d7dee7;overflow-wrap:anywhere}td button{font-size:14px;padding:5px 9px}button:disabled{opacity:.6}h2{font-size:22px}
 </style>
-<h1>Бұлттық файлдар жүйесі</h1>
-<p>№8 практикалық жұмыс · 10-нұсқа. Файлдың атауы, түрі және көлемі сақталады.</p>
+<h1>Файлдар</h1>
 <section>
 <button id="health">Қызмет күйі</button>
 <button id="database">База күйі</button>
-<button id="bad">400 тексеру</button>
-<button id="missing">404 тексеру</button>
 </section>
 <section>
-<button id="all">Барлық файлды оқу</button>
+<button id="all">Файлдар тізімі</button>
 <label>Файл нөмірі<input id="file-id" type="number" value="1" min="1"></label>
-<button id="one">Бір файлды оқу</button>
-<p id="count">Тізімді ашу үшін «Барлық файлды оқу» батырмасын басыңыз.</p>
-<table id="file-table" hidden><thead><tr><th>ID</th><th>Атауы</th><th>MIME түрі</th><th>Байт</th><th>Әрекет</th></tr></thead><tbody id="rows"></tbody></table>
+<button id="one">Файлды ашу</button>
+<p id="count">Тізімді ашу үшін «Файлдар тізімі» батырмасын басыңыз.</p>
+<table id="file-table" hidden><thead><tr><th>ID</th><th>Атауы</th><th>Файл түрі</th><th>Байт</th><th>Әрекет</th></tr></thead><tbody id="rows"></tbody></table>
 </section>
 <section>
-<h2>Файл қосу немесе өзгерту</h2>
-<p>Өзгерту үшін тізімнен файлды таңдаңыз немесе оның ID нөмірін енгізіңіз. PUT барлық үш өрісті ауыстырады.</p>
-<label>Атауы<input id="name" value="зертхана.txt"></label>
-<label>MIME түрі<input id="type" value="text/plain"></label>
+<h2>Файл мәліметтері</h2>
+<p>Тізімнен файлды таңдаңыз немесе оның нөмірін енгізіңіз.</p>
+<label>Атауы<input id="name" placeholder="Файл атауы"></label>
+<label>Файл түрі<input id="type" value="text/plain"></label>
 <label>Көлемі, байт<input id="size" type="number" value="2048" min="0"></label>
-<button id="add">POST арқылы қосу</button>
-<button id="update">Таңдалған ID-ді өзгерту (PUT)</button>
+<button id="add">Қосу</button>
+<button id="update">Өзгерістерді сақтау</button>
 </section>
 <section aria-live="polite">
-<p id="request">Сұраныс әлі жіберілген жоқ.</p>
-<p id="status">Нәтижені көру үшін батырманы басыңыз.</p>
+<p id="request"></p>
+<p id="status">Файлды таңдаңыз немесе жаңа мәлімет қосыңыз.</p>
 <pre id="result">{}</pre>
 </section>
-<p><a href="/api/files">JSON тізімін ашу</a> · <a href="/info">Құпиясыз баптау белгісі</a></p>
 <script>
 async function send(method,path,data){
   document.getElementById('request').textContent=method+' '+path;
@@ -76,9 +72,6 @@ document.getElementById('all').onclick=()=>send('GET','/api/files');
 document.getElementById('one').onclick=()=>send('GET','/api/files/'+encodeURIComponent(document.getElementById('file-id').value));
 document.getElementById('health').onclick=()=>send('GET','/health');
 document.getElementById('database').onclick=()=>send('GET','/health/db');
-document.getElementById('bad').onclick=()=>send('POST','/api/files',{name:'тексеру.txt'});
-document.getElementById('missing').onclick=()=>send('GET','/api/files/2147483647');
-document.getElementById('name').value='файл-'+Date.now()+'.txt';
 document.getElementById('add').onclick=()=>send('POST','/api/files',{
   name:document.getElementById('name').value,
   content_type:document.getElementById('type').value,
